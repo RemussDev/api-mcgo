@@ -5,7 +5,9 @@ $con = mysqli_connect('localhost', 'root', '', 'bw_stats');
 $response = array();
 
 if($con){
-    $sql = "SELECT * FROM tygodniowe";
+    $nick1 = $_GET["nick"];
+    $nick2 = mysqli_real_escape_string($con, $nick1);
+    $sql = "SELECT * FROM tygodniowe WHERE nick = '$nick2'";
     $result = mysqli_query($con, $sql);
     if($result){
         header('Content-Type: JSON');
